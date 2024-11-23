@@ -30,7 +30,7 @@ class RegisterPage extends StatelessWidget {
 
             // message app slogan
             Text(
-              'Let\'s create an account for you',
+              'Estamos creando una cuenta para ti',
               style: TextStyle(
                   fontSize: 16,
                   color: Theme.of(context).colorScheme.inversePrimary),
@@ -43,7 +43,7 @@ class RegisterPage extends StatelessWidget {
             // email textfields
             MyTextfield(
                 controller: emailController,
-                hintText: 'Email',
+                hintText: 'Correo electrónico',
                 obsecureText: false),
 
             const SizedBox(
@@ -53,7 +53,7 @@ class RegisterPage extends StatelessWidget {
             //password textfield
             MyTextfield(
                 controller: passwordController,
-                hintText: 'Password',
+                hintText: 'Contraseña',
                 obsecureText: true),
 
             const SizedBox(
@@ -63,7 +63,7 @@ class RegisterPage extends StatelessWidget {
             //Confirm password textfield
             MyTextfield(
                 controller: confirmPassController,
-                hintText: 'Confirm Password',
+                hintText: 'Confirma tu contraseña',
                 obsecureText: true),
 
             const SizedBox(
@@ -71,7 +71,7 @@ class RegisterPage extends StatelessWidget {
             ),
 
             //sign Up button
-            MyButton(onTap: () {}, text: 'Sign Up'),
+            MyButton(onTap: () {}, text: 'Registrarse'),
 
             const SizedBox(
               height: 25,
@@ -82,7 +82,7 @@ class RegisterPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'already have an account?',
+                  '¿Ya tienes una cuenta?',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
                   ),
@@ -93,7 +93,7 @@ class RegisterPage extends StatelessWidget {
                 GestureDetector(
                   onTap: onTap,
                   child: Text(
-                    'Login now',
+                    'Iniciar sesión',
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.inversePrimary,
                         fontWeight: FontWeight.bold),

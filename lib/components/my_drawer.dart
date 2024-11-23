@@ -1,5 +1,5 @@
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_drawer_tile.dart';
-import 'package:delivery_app_jesus_ku_marco_velasco/components/settings_page.dart';
+import 'package:delivery_app_jesus_ku_marco_velasco/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -35,7 +35,7 @@ class MyDrawer extends StatelessWidget {
               }),
 
           MyDrawerTile(
-              text: 'S E T T I N G S',
+              text: 'C O N F I G U R A C I O N',
               icon: Icons.settings,
               onTap: () {
                 Navigator.pop(context);
@@ -48,7 +48,7 @@ class MyDrawer extends StatelessWidget {
           const Spacer(),
 
           //logout list tile
-          MyDrawerTile(text: 'L O G  O U T', icon: Icons.logout, onTap: () {}),
+          MyDrawerTile(text: 'C E R R A R S E S I O N', icon: Icons.logout, onTap: () {}),
 
           const SizedBox(
             height: 25.0,

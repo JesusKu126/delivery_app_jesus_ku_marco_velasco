@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
             // message app slogan
 
             Text(
-              'Food Delivery App',
+              'Los Repas App',
               style: TextStyle(
                   fontSize: 16,
                   color: Theme.of(context).colorScheme.inversePrimary),
@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             MyTextfield(
                 controller: emailController,
-                hintText: 'Email',
+                hintText: 'Correo electrónico',
                 obsecureText: false),
             const SizedBox(
               height: 25,
@@ -53,21 +53,21 @@ class _LoginPageState extends State<LoginPage> {
 
             MyTextfield(
                 controller: passwordController,
-                hintText: 'Password',
+                hintText: 'Contraseña',
                 obsecureText: true),
 
             const SizedBox(
               height: 25,
             ),
 
-            MyButton(onTap: login, text: 'Sign In'),
+            MyButton(onTap: login, text: 'Iniciar sesión'),
 
             const SizedBox(
               height: 25,
             ),
 
             Text(
-              'Not a member?',
+              '¿No eres miembro aún?',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
             GestureDetector(
               onTap: widget.onTap,
               child: Text(
-                'Register now',
+                'Registrate ahora',
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
                     fontWeight: FontWeight.bold),
