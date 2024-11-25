@@ -1,8 +1,8 @@
 import 'package:delivery_app_jesus_ku_marco_velasco/auth/auth_service.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_button.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_textfield.dart';
-
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -18,11 +18,11 @@ class _LoginPageState extends State<LoginPage> {
 
   void login() async {
     //get instance of auth service
-    final _authService = AuthService();
+    final authService = AuthService();
 
     //try sign in
     try {
-      await _authService.signInWithEmailPassword(
+      await authService.signInWithEmailPassword(
           emailController.text, passwordController.text);
     }
 
@@ -47,9 +47,8 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //logo
-            Icon(Icons.lock_open_rounded,
-                size: 100, color: Theme.of(context).colorScheme.inversePrimary),
-            const SizedBox(height: 25),
+            Lottie.asset('lib/animations/food_delivery_truck.json',
+                height: 250),
 
             // message app slogan
 

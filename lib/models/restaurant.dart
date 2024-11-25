@@ -327,7 +327,7 @@ class Restaurant extends ChangeNotifier {
 
   final List<CartItem> _cart = [];
 
-  String _deliveryAddress = "Rc_39 Khuramabad";
+  String _deliveryAddress = "R81 chuburna";
 
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
@@ -410,7 +410,7 @@ class Restaurant extends ChangeNotifier {
     jaise ke ek receipt ya report generate karte waqt.
     */
 
-    receipt.writeln("Here's your receipt");
+    receipt.writeln("Tu recibo");
     /*
     receipt.writeln("Here's your receipt");: writeln method ek line ko string buffer mein 
     add karta hai aur automatically ek newline character (\n) bhi insert karta hai. Is line mein,
@@ -436,16 +436,17 @@ class Restaurant extends ChangeNotifier {
       receipt.writeln(
           "${cartItem.quantity} x ${cartItem.food.name} - ${_formatPrice(cartItem.food.price)}");
       if (cartItem.selectedAddons.isNotEmpty) {
-        receipt.writeln("Add-ons : ${_formatAddons(cartItem.selectedAddons)}");
+        receipt.writeln(
+            "Complementos : ${_formatAddons(cartItem.selectedAddons)}");
       }
       receipt.writeln();
     }
 
     receipt.writeln("----------");
     receipt.writeln();
-    receipt.writeln("Total Items: ${getTotalItemCount()}");
-    receipt.writeln("Total Price: ${_formatPrice(getTotalPrice())}");
-    receipt.writeln("Total Price: ${_formatPrice(getTotalPrice())}");
+    receipt.writeln("Total de objetos: ${getTotalItemCount()}");
+    receipt.writeln("Costo total: ${_formatPrice(getTotalPrice())}");
+    receipt.writeln();
     receipt.writeln("Enviando a: $deliveryAddress");
 
     return receipt.toString();

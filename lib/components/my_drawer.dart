@@ -57,7 +57,9 @@ class MyDrawer extends StatelessWidget {
           MyDrawerTile(
               text: 'C E R R A R S E S I O N',
               icon: Icons.logout,
-              onTap: () {}),
+              onTap: () {
+                logout();
+              }),
 
           const SizedBox(
             height: 25.0,

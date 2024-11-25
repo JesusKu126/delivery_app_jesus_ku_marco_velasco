@@ -1,4 +1,6 @@
+import 'package:delivery_app_jesus_ku_marco_velasco/models/restaurant.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyCurrentLocation extends StatelessWidget {
   final TextEditingController textController = TextEditingController();
@@ -21,7 +23,12 @@ class MyCurrentLocation extends StatelessWidget {
           ),
           //save button
           MaterialButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              String newAddress = textController.text;
+              context.read<Restaurant>().updateDeliveryAddress(newAddress);
+              Navigator.pop(context);
+              textController.clear();
+            },
             child: const Text("Guardar"),
           ),
         ],
@@ -45,11 +52,14 @@ class MyCurrentLocation extends StatelessWidget {
             child: Row(
               children: [
                 //address
-                Text("6901 yucatan",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary,
-                      fontWeight: FontWeight.bold,
-                    )),
+                Consumer<Restaurant>(
+                  builder: (context, restaurant, child) =>
+                      Text(restaurant.deliveryAddress,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                            fontWeight: FontWeight.bold,
+                          )),
+                ),
                 //drop down menu
                 const Icon(Icons.keyboard_arrow_down),
               ],

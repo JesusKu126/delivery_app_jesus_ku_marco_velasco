@@ -1,11 +1,8 @@
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_button.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/models/restaurant.dart';
 import 'package:flutter/material.dart';
-//import 'package:provider/provider.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/models/food.dart';
 import 'package:provider/provider.dart';
-//import 'package:delivery_app_jesus_ku_marco_velasco/models/restaurant.dart';
-//import 'package:delivery_app_jesus_ku_marco_velasco/components/my_button.dart';
 
 class FoodPage extends StatefulWidget {
   final Food food;
