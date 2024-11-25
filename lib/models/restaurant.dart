@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/models/cart_item.dart';
 import 'package:flutter/material.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/models/food.dart';
+import 'package:intl/intl.dart';
 
 class Restaurant extends ChangeNotifier {
   //Lists of food menu
@@ -324,15 +325,20 @@ class Restaurant extends ChangeNotifier {
     ),
   ];
 
+  final List<CartItem> _cart = [];
+
+  String _deliveryAddress = "Rc_39 Khuramabad";
+
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
 
-  final List<CartItem> _cart = [];
+  String get deliveryAddress => _deliveryAddress;
+
   void addToCart(Food food, List<Addon> selectedAddons) {
     CartItem? cartItem = _cart.firstWhereOrNull((item) {
       bool isSameFood = item.food == food;
       bool isSameAddons =
-          ListEquality().equals(item.selectedAddons, selectedAddons);
+          const ListEquality().equals(item.selectedAddons, selectedAddons);
 
       return isSameFood && isSameAddons;
     });
@@ -386,5 +392,87 @@ class Restaurant extends ChangeNotifier {
   void clearCart() {
     _cart.clear();
     notifyListeners();
+  }
+
+  //update delivery address
+  void updateDeliveryAddress(String newAddress) {
+    _deliveryAddress = newAddress;
+    notifyListeners();
+  }
+
+  // generate a receipt
+
+  String displayCartReceipt() {
+    final receipt = StringBuffer();
+    /*
+    StringBuffer class Dart mein mutable strings ko efficiently concatenate karne ke liye use hoti hai. 
+    Yeh especially useful hai jab aapko ek string ko dynamically build karna ho, 
+    jaise ke ek receipt ya report generate karte waqt.
+    */
+
+    receipt.writeln("Here's your receipt");
+    /*
+    receipt.writeln("Here's your receipt");: writeln method ek line ko string buffer mein 
+    add karta hai aur automatically ek newline character (\n) bhi insert karta hai. Is line mein,
+    "Here's your receipt" string buffer mein add kiya jata hai aur newline character bhi append hota hai.
+    */
+    receipt.writeln();
+
+    //format the date to include up to second only
+    //convert date to string here
+    String formattedDate =
+        DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
+    /*
+    DateFormat() class Dart ke intl package mein define ki gayi hai. intl package, 
+    Internationalization (i18n) aur Localization (l10n) ke liye use hota hai.
+    Yeh package date, time, numbers, aur messages ko locale-specific format mein handle
+    karne ki sahulat provide karta hai.
+    */
+    receipt.writeln(formattedDate);
+    receipt.writeln();
+    receipt.writeln("----------");
+
+    for (final cartItem in _cart) {
+      receipt.writeln(
+          "${cartItem.quantity} x ${cartItem.food.name} - ${_formatPrice(cartItem.food.price)}");
+      if (cartItem.selectedAddons.isNotEmpty) {
+        receipt.writeln("Add-ons : ${_formatAddons(cartItem.selectedAddons)}");
+      }
+      receipt.writeln();
+    }
+
+    receipt.writeln("----------");
+    receipt.writeln();
+    receipt.writeln("Total Items: ${getTotalItemCount()}");
+    receipt.writeln("Total Price: ${_formatPrice(getTotalPrice())}");
+    receipt.writeln("Total Price: ${_formatPrice(getTotalPrice())}");
+    receipt.writeln("Enviando a: $deliveryAddress");
+
+    return receipt.toString();
+  }
+
+  // format double value into money
+
+  String _formatPrice(double price) {
+    //fixed price upto 2 decimal places
+    return "\$${price.toStringAsFixed(2)}";
+  }
+
+  // format list of addons into a string summary
+
+  String _formatAddons(List<Addon> addons) {
+    return addons
+        .map((addon) => "${addon.name}(${_formatPrice(addon.price)})")
+
+        /*Example of map():
+    Yeh function ek collection ke har element ko ek function se apply karta hai aur
+    ek naya collection return karta hai. Naye collection mein har element original 
+    collection ke corresponding element ke function se apply hone ke baad ka result hota hai.
+
+      List<String> names = ["Alice", "Bob", "Charlie"];
+      List<String> upperCaseNames = names.map((name) => name.toUpperCase());
+      print(upperCaseNames); // Output: ["ALICE", "BOB", "CHARLIE"]
+    */
+        .join(", ");
   }
 }

@@ -1,6 +1,7 @@
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_button.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_cart_tile.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/models/restaurant.dart';
+import 'package:delivery_app_jesus_ku_marco_velasco/pages/payment_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class CartPage extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('Cart'),
+          title: const Text('Carrito'),
           backgroundColor: Colors.transparent,
           foregroundColor: Theme.of(context).colorScheme.inversePrimary,
           actions: [
@@ -27,13 +28,13 @@ class CartPage extends StatelessWidget {
                       context: context,
                       builder: (context) => AlertDialog(
                             title: const Text(
-                                'Are you sure you want to clear the cart'),
+                                '¿Estás seguro de vaciar el carrito?'),
                             actions: [
                               //cancel button
 
                               TextButton(
                                   onPressed: () => Navigator.pop(context),
-                                  child: const Text('Cancel')),
+                                  child: const Text('Cancelar')),
 
                               //yes
                               TextButton(
@@ -41,7 +42,7 @@ class CartPage extends StatelessWidget {
                                     Navigator.pop(context);
                                     restaurant.clearCart();
                                   },
-                                  child: const Text('Yes')),
+                                  child: const Text('Sí')),
                             ],
                           ));
                 },
@@ -56,7 +57,8 @@ class CartPage extends StatelessWidget {
                 children: [
                   userCart.isEmpty
                       ? const Expanded(
-                          child: Center(child: Text("Cart is empty...")))
+                          child:
+                              Center(child: Text("El carrito está vacío...")))
                       : Expanded(
                           child: ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
@@ -79,11 +81,12 @@ class CartPage extends StatelessWidget {
 
             MyButton(
                 onTap: () {
-                  /*Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context)=> const PaymentPage()));*/
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PaymentPage()));
                 },
-                text: 'Go to checkout'),
+                text: 'Proceder al pago'),
 
             const SizedBox(
               height: 25,

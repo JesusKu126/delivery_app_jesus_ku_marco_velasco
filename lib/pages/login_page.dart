@@ -1,6 +1,7 @@
+import 'package:delivery_app_jesus_ku_marco_velasco/auth/auth_service.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_button.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_textfield.dart';
-import 'package:delivery_app_jesus_ku_marco_velasco/pages/home_page.dart';
+
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,9 +16,27 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void login() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const HomePage()));
+  void login() async {
+    //get instance of auth service
+    final _authService = AuthService();
+
+    //try sign in
+    try {
+      await _authService.signInWithEmailPassword(
+          emailController.text, passwordController.text);
+    }
+
+    //display any error
+    catch (e) {
+      showDialog(
+          // ignore: use_build_context_synchronously
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text(e.toString()),
+            );
+          });
+    }
   }
 
   @override

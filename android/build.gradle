@@ -1,7 +1,23 @@
+buildscript {
+    // Actualiza la versión de Kotlin aquí
+    ext.kotlin_version = '1.8.0'  // Usa la versión más reciente de Kotlin (verifica si hay versiones más nuevas)
+
+    repositories {
+        google()        // Repositorio de Google para dependencias Android
+        mavenCentral()  // Repositorio Maven Central para otras dependencias
+    }
+
+    dependencies {
+        // Usamos la versión más reciente de Kotlin y el plugin de Gradle para Android
+        classpath 'com.android.tools.build:gradle:7.3.1'   // Plugin de Gradle para Android (ajustar si usas una versión diferente)
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"  // Plugin de Kotlin
+    }
+}
+
 allprojects {
     repositories {
-        google()
-        mavenCentral()
+        google()       // Repositorio de Google
+        mavenCentral() // Repositorio Maven Central
     }
 }
 
@@ -13,6 +29,7 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// Tarea para limpiar la carpeta de compilación
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }

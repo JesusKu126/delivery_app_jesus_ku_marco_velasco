@@ -72,7 +72,7 @@ class _FoodPageState extends State<FoodPage> {
                       Divider(color: Theme.of(context).colorScheme.secondary),
                       const SizedBox(height: 10),
                       Text(
-                        "Add-ons",
+                        "Complementos",
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.inversePrimary,
                           fontSize: 16,

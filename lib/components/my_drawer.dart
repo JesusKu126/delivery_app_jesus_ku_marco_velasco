@@ -1,9 +1,15 @@
+import 'package:delivery_app_jesus_ku_marco_velasco/auth/auth_service.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_drawer_tile.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
+
+  void logout() {
+    final authService = AuthService();
+    authService.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +54,10 @@ class MyDrawer extends StatelessWidget {
           const Spacer(),
 
           //logout list tile
-          MyDrawerTile(text: 'C E R R A R S E S I O N', icon: Icons.logout, onTap: () {}),
+          MyDrawerTile(
+              text: 'C E R R A R S E S I O N',
+              icon: Icons.logout,
+              onTap: () {}),
 
           const SizedBox(
             height: 25.0,

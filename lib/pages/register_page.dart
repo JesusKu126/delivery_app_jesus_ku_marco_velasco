@@ -1,3 +1,4 @@
+import 'package:delivery_app_jesus_ku_marco_velasco/auth/auth_service.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_button.dart';
 import 'package:delivery_app_jesus_ku_marco_velasco/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,39 @@ class RegisterPage extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     TextEditingController confirmPassController = TextEditingController();
+
+    void register() async {
+      //get auth service
+      final authService = AuthService();
+
+      //check if the password match -> create user
+      if (passwordController.text == confirmPassController.text) {
+        //try creating user
+        try {
+          await authService.signUpWithEmailPassword(
+              emailController.text, passwordController.text);
+        }
+
+        //display any error
+        catch (e) {
+          showDialog(
+              // ignore: use_build_context_synchronously
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: Text(e.toString()),
+                  ));
+        }
+      }
+
+      //if password don't match -> show error
+      else {
+        showDialog(
+            context: context,
+            builder: (context) => const AlertDialog(
+                  title: Text("Las contraseñas no coinciden"),
+                ));
+      }
+    }
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -71,7 +105,11 @@ class RegisterPage extends StatelessWidget {
             ),
 
             //sign Up button
-            MyButton(onTap: () {}, text: 'Registrarse'),
+            MyButton(
+                onTap: () {
+                  register();
+                },
+                text: 'Registrarse'),
 
             const SizedBox(
               height: 25,

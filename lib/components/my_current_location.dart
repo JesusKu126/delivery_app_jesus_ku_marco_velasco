@@ -8,21 +8,21 @@ class MyCurrentLocation extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Your Location"),
+        title: const Text("Tu ubicacion"),
         content: TextField(
           controller: textController,
-          decoration: const InputDecoration(hintText: "Enter address.."),
+          decoration: const InputDecoration(hintText: "Introduce tu direccion"),
         ),
         actions: [
           //cancel button
           MaterialButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("Cancel"),
+            child: const Text("Cancelar"),
           ),
           //save button
           MaterialButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("save"),
+            child: const Text("Guardar"),
           ),
         ],
       ),
@@ -45,7 +45,7 @@ class MyCurrentLocation extends StatelessWidget {
             child: Row(
               children: [
                 //address
-                Text("6901 Hollywood",
+                Text("6901 yucatan",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary,
                       fontWeight: FontWeight.bold,

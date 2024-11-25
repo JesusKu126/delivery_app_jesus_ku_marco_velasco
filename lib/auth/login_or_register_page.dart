@@ -6,10 +6,10 @@ class LoginOrRegisterPage extends StatefulWidget {
   const LoginOrRegisterPage({super.key});
 
   @override
-  State<LoginOrRegisterPage> createState() => _LoginOrRegistorPageState();
+  State<LoginOrRegisterPage> createState() => _LoginOrRegisterPageState();
 }
 
-class _LoginOrRegistorPageState extends State<LoginOrRegisterPage> {
+class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
   bool showLoginPage = true;
 
   void togglePages() {
